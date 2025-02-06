@@ -195,9 +195,9 @@ namespace MantenimientoIndustrial.Controllers
             {
                 return NotFound();
             }
-            // Buscar el equipo
+
             var equipo = await _context.Equipos
-                .Include(e => e.Componentes) // Incluir los componentes relacionados
+                .Include(e => e.Componentes) // Incluye componentes relacionados
                 .FirstOrDefaultAsync(e => e.EquipoID == id);
 
             if (equipo == null)
@@ -205,10 +205,10 @@ namespace MantenimientoIndustrial.Controllers
                 return NotFound();
             }
 
-            // Obtener los componentes no asignados al equipo
-            ViewBag.ComponentesNoAsignados = _context.Componentes
-                .Where(c => c.EquipoID == null || c.EquipoID == equipo.EquipoID) // Mostrar componentes asignados y no asignados
-                .OrderBy(c => c.Nombre)
+            // Cargar lista de componentes disponibles
+            ViewBag.Componentes = _context.Componentes
+                .Where(c => c.EquipoID == null || c.EquipoID == equipo.EquipoID)
+                .OrderBy(c => c.Nombre) // Ordenar alfabéticamente
                 .Select(c => new SelectListItem
                 {
                     Value = c.ComponenteID.ToString(),
@@ -232,7 +232,7 @@ namespace MantenimientoIndustrial.Controllers
             {
                 try
                 {
-                    // Actualizar foto si se selecciona una nueva
+                    // Manejo de la foto
                     if (Foto != null && Foto.Length > 0)
                     {
                         var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
@@ -284,7 +284,7 @@ namespace MantenimientoIndustrial.Controllers
 
             // Recargar la lista de componentes
             ViewBag.Componentes = _context.Componentes
-                .Where(c => c.EquipoID == null || c.EquipoID == id)
+                .OrderBy(c => c.Nombre)
                 .Select(c => new SelectListItem
                 {
                     Value = c.ComponenteID.ToString(),

@@ -1,3 +1,9 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using MantenimientoIndustrial.Models
 @namespace MantenimientoIndustrial.Views
+@functions {
+    string IsSelected(int componenteId, string value)
+    {
+        return componenteId.ToString() == value ? "selected" : "";
+    }
+}
