@@ -1,0 +1,116 @@
+﻿@model MantenimientoIndustrial.Models.Equipo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Equipo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EquipoID" />
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ubicacion" class="control-label"></label>
+                <input asp-for="Ubicacion" class="form-control" />
+                <span asp-validation-for="Ubicacion" class="text-danger"></span>
+            </div>
+            <!-- Pestaña de Componentes -->
+            <div class="tab-pane fade" id="componentes" role="tabpanel" aria-labelledby="componentes-tab">
+                <h4>Asignar Componentes al Equipo</h4>
+                <div id="componentesContainer">
+                    <div class="componente-row mb-3">
+                        <select class="form-control componente-select" name="componentesSeleccionados[]">
+                            <option value="">Seleccione un Componente</option>
+                            @foreach (var componente in ViewBag.Componentes as IEnumerable<SelectListItem>)
+                            {
+                                <option value="@componente.Value">@componente.Text</option>
+                            }
+                        </select>
+                        <input type="number" class="form-control mt-2" name="cantidades[]" placeholder="Cantidad" min="1" />
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary mt-2" id="addComponente">Agregar Componente</button>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Foto">Actualizar Foto</label>
+                <input type="file" name="Foto" class="form-control" accept="image/*" />
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.FotoRuta))
+            {
+                <div class="form-group mb-3">
+                    <label>Foto Actual</label>
+                    <div>
+                    <img src="@Model.FotoRuta" alt="Foto del equipo" class="img-thumbnail" style="max-height: 150px;" />
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modelo" class="control-label"></label>
+                <input type="text" asp-for="Modelo" class="form-control" />
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaIngreso" class="control-label"></label>
+                <input asp-for="FechaIngreso" class="form-control" />
+                <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <input asp-for="Estado" class="form-control" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById("addComponente").addEventListener("click", function () {
+            const container = document.getElementById("componentesContainer");
+
+            const row = document.createElement("div");
+            row.className = "componente-row mb-3";
+
+            row.innerHTML = `
+                <select class="form-control componente-select" name="componentesSeleccionados[]">
+                    <option value="">Seleccione un Componente</option>
+        @foreach (var item in ViewBag.Componentes as IEnumerable<SelectListItem>)
+        {
+                            <option value="@item.Value">@item.Text</option>
+        }
+                </select>
+                <input type="number" class="form-control mt-2" name="cantidades[]" placeholder="Cantidad" min="1" />
+            `;
+
+            container.appendChild(row);
+        });
+    </script>
+}

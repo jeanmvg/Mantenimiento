@@ -1,0 +1,136 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/*Responsividad*/
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar-item {
+        text-align: center;
+    }
+}
+
+
+
+/*Estilo de barra lateral*/
+
+.sidebar {
+    width: 250px;
+    background-color: #1a1a1a;
+    color: white;
+    position: fixed;
+}
+
+.sidebar-header {
+    border-bottom: 1px solid #444;
+}
+
+.sidebar-item {
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s ease;
+}
+
+    .sidebar-item:hover {
+        background-color: #333;
+    }
+
+.sidebar a {
+    font-size: 17px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    display: block;
+}
+
+    .sidebar a:hover {
+        background-color: #444;
+        color: black;
+    }
+
+.sidebar i {
+            font-size: 18px;
+            color: #ccc;
+}
+/*Sub Menu*/
+
+
+.nav-item .nav-link {
+    color: #fff; /* Color blanco para los enlaces */
+    padding-left: 15px; /* Ajustar espaciado para submenús */
+}
+
+    .nav-item .nav-link:hover {
+        background-color: #444; /* Color de fondo al pasar el mouse */
+        color: #fff;
+    }
+
+.collapse.show {
+    display: block !important;
+}
+
+.collapse {
+    display: none;
+}
+
+.nav-link .bi {
+    margin-right: 8px; /* Añade espacio entre el ícono y el texto */
+}
+
+.nav .nav-item ul {
+    margin-left: 16px; /* Desplaza el submenú hacia la derecha */
+}
+.nav-item ul .nav-link {
+    padding-left: 16px; /* Desplaza el texto del submenú */
+}
+
+/* Estilos personalizados para las pestañas */
+.nav-tabs .nav-link {
+    color: #007bff; /* Color del texto de las pestañas */
+    background-color: #f8f9fa; /* Fondo de las pestañas */
+    border: 1px solid #dee2e6; /* Borde de las pestañas */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones suaves */
+}
+
+    .nav-tabs .nav-link:hover {
+        color: #0056b3; /* Color del texto al pasar el mouse */
+        background-color: #e9ecef; /* Fondo al pasar el mouse */
+    }
+
+    .nav-tabs .nav-link.active {
+        color: #000; /* Color del texto de la pestaña activa */
+        background-color: #007bff; /* Fondo de la pestaña activa */
+        border-color: #007bff; /* Borde de la pestaña activa */
+    }
+
+.tab-content {
+    border: 1px solid #dee2e6; /* Borde del contenido de las pestañas */
+    padding: 15px; /* Espaciado interno del contenido */
+    background-color: #fff; /* Fondo del contenido de las pestañas */
+    border-top: none; /* Quitar borde superior para integrar con las pestañas */
+}
+
+

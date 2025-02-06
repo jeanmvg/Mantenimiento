@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MantenimientoIndustrial.Models.Alerta>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Gestion de Alertas";
+}
+
+<h1>Gestión de Alertas</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Agregar Nueva Alerta</a>
+
+<table id="dataTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mantenimiento</th>
+            <th>Fecha de Alerta</th>
+            <th>Mensaje</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mantenimiento.MantenimientoID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaAlerta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mensaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AlertaID" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.AlertaID" class="btn btn-sm btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertaID" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

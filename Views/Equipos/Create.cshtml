@@ -1,0 +1,126 @@
+﻿@model MantenimientoIndustrial.Models.Equipo
+
+@{
+    ViewData["Title"] = "Crear Equipo";
+}
+
+<h1>Crear Equipo</h1>
+
+<h4>Equipo</h4>
+<hr />
+<div class="container">
+    <ul class="nav nav-tabs" id="equipoTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="detalles-tab" data-bs-toggle="tab" data-bs-target="#detalles" type="button" role="tab" aria-controls="detalles" aria-selected="true">
+                Detalles del Equipo
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="componentes-tab" data-bs-toggle="tab" data-bs-target="#componentes" type="button" role="tab" aria-controls="componentes" aria-selected="false">
+                Asignar Componentes
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="equipoTabsContent">
+        <!-- Pestaña de Detalles -->
+        <div class="tab-pane fade show active" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                    <label for="Codigo">Código</label>
+                    <input type="text" asp-for="Codigo" class="form-control" />
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Nombre">Nombre</label>
+                    <input type="text" asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Foto">Subir Foto</label>
+                    <input type="file" name="Foto" class="form-control" accept="image/*" />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Ubicacion">Ubicación</label>
+                    <select asp-for="Ubicacion" class="form-control">
+                        <option value="Cuarto de Maquina">Cuarto de Maquina</option>
+                        <option value="Desorcion">Desorcion</option>
+                        <option value="Fundicion">Fundicion</option>
+                        <option value="Hidrometalurgia">Hidrometalurgia</option>
+                        <option value="Laboratorio">Laboratorio</option>
+                        <option value="Refinacion">Refinacion</option>
+                    </select>
+                    <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Marca">Marca</label>
+                    <input type="text" asp-for="Marca" class="form-control" />
+                    <span asp-validation-for="Marca" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Modelo">Modelo (Opcional)</label>
+                    <input type="text" asp-for="Modelo" class="form-control" />
+                    <span asp-validation-for="Modelo" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="FechaIngreso">Fecha de Ingreso</label>
+                    <input type="date" asp-for="FechaIngreso" class="form-control" />
+                    <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Estado">Estado</label>
+                    <select class="form-control" asp-for="Estado">
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+
+        <!-- Pestaña de Componentes -->
+        <div class="tab-pane fade" id="componentes" role="tabpanel" aria-labelledby="componentes-tab">
+            <h4>Asignar Componentes al Equipo</h4>
+            <div id="componentesContainer">
+                <div class="componente-row mb-3">
+                    <select class="form-control componente-select" name="componentesSeleccionados[]">
+                        <option value="">Seleccione un Componente</option>
+                        @foreach (var componente in ViewBag.Componentes as IEnumerable<SelectListItem>)
+                        {
+                            <option value="@componente.Value">@componente.Text</option>
+                        }
+                    </select>
+                    <input type="number" class="form-control mt-2" name="cantidades[]" placeholder="Cantidad" min="1" />
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-2" id="addComponente">Agregar Componente</button>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        document.getElementById("addComponente").addEventListener("click", function () {
+            const container = document.getElementById("componentesContainer");
+
+            const row = document.createElement("div");
+            row.className = "componente-row mb-3";
+
+            row.innerHTML = `
+                <select class="form-control componente-select" name="componentesSeleccionados[]">
+                    <option value="">Seleccione un Componente</option>
+        @foreach (var componente in ViewBag.Componentes as IEnumerable<SelectListItem>)
+        {
+                            <option value="@componente.Value">@componente.Text</option>
+        }
+                </select>
+                <input type="number" class="form-control mt-2" name="cantidades[]" placeholder="Cantidad" min="1" />
+            `;
+
+            container.appendChild(row);
+        });
+    </script>
+}

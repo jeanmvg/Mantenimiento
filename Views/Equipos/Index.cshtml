@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MantenimientoIndustrial.Models.Equipo>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Gestion de Equipos";
+}
+
+<h1>Gestión de Equipos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mb-3">Agregar Equipo</a>
+    <a asp-action="Importar" class="btn btn-success mb-3 d-none">Importar Equipos</a>
+</p>
+<table id="dataTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Fecha de Compra</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var equipo in Model)
+        {
+            <tr>
+                <td>@equipo.Codigo</td>
+                <td>@equipo.Nombre</td>
+                <td>@equipo.Ubicacion</td>
+                <td>@equipo.Marca</td>
+                <td>@equipo.Modelo</td>
+                <td>@equipo.FechaIngreso.ToString("yyyy-MM-dd")</td>
+                <td>@equipo.Estado</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@equipo.EquipoID" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@equipo.EquipoID" class="btn btn-sm btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@equipo.EquipoID" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <!-- Scripts específicos de la vista -->
+}

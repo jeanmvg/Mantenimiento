@@ -1,0 +1,32 @@
+﻿@model MantenimientoIndustrial.Models.Equipo
+
+@{
+    ViewData["Title"] = "Importar Equipos";
+}
+
+<h1>Importar Equipos</h1>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+<form asp-action="Importar" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="archivo">Seleccionar Archivo Excel</label>
+        <input type="file" name="archivo" id="archivo" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Importar</button>
+</form>

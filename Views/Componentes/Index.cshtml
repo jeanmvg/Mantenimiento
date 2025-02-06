@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MantenimientoIndustrial.Models.Componente>
+
+<h1>Componentes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Agregar Componente</a>
+</p>
+<div class="mb-3" hidden>
+    <form asp-action="ImportarDesdeExcel" enctype="multipart/form-data" method="post">
+        <div class="input-group">
+            <input type="file" name="archivoExcel" class="form-control" accept=".xlsx,.xls" required>
+            <button type="submit" class="btn btn-success">Importar Excel</button>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Estado</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Cantidad</td>
+                <td>@item.Estado</td>
+                <td>@item.Observaciones</td>
+            </tr>
+        }
+    </tbody>
+</table>

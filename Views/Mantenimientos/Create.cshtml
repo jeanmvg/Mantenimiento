@@ -1,0 +1,74 @@
+﻿@model MantenimientoIndustrial.Models.Mantenimiento
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear Mantenimiento</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group mb-3">
+                <label for="EquipoID">Equipo</label>
+                <select class="form-control" asp-for="EquipoID" asp-items="ViewBag.EquipoID"></select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="FechaInicial">Fecha Inicial</label>
+                <input type="date" asp-for="FechaInicial" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <label for="Frecuencia">Frecuencia</label>
+                <select asp-for="Frecuencia" class="form-control">
+                    <option value="Mensual">Mensual</option>
+                    <option value="Bimestral">Bimestral</option>
+                    <option value="Trimestral">Trimestral</option>
+                    <option value="Anual">Anual</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="FechaProgramada">Fecha Programada</label>
+                <input type="date" class="form-control" asp-for="FechaProgramada" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="FechaRealizada">Fecha Realizada</label>
+                <input type="date" class="form-control" asp-for="FechaRealizada" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="Descripcion">Descripción</label>
+                <textarea class="form-control" asp-for="Descripcion"></textarea>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="Costo">Costo</label>
+                <input type="number" class="form-control" asp-for="Costo" step="0.01" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="Estado">Estado</label>
+                <select class="form-control" asp-for="Estado">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Realizado">Realizado</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

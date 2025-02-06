@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MantenimientoIndustrial.Models.Mantenimiento>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Mantenimientos";
+}
+
+<h1>Gestión de Mantenimientos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mb-3">Agregar Mantenimiento</a>
+    <a asp-action="Importar" class="btn btn-success mb-3 d-none">Importar Equipos</a>
+</p>
+<table id="dataTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Equipo</th>
+            <th>Fecha Inicial</th>
+            <th>Frecuencia</th>
+            <th>Fecha Programada</th>
+            <th>Estado</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mantenimiento in Model)
+        {
+            <tr>
+                <td>@mantenimiento.Equipo.Nombre</td>
+                <td>@mantenimiento.FechaInicial.ToString("yyyy-MM-dd")</td>
+                <td>@mantenimiento.Frecuencia</td>
+                <td>@mantenimiento.FechaProgramada.ToString("yyyy-MM-dd")</td>
+                <td>@mantenimiento.Estado</td>
+                <td>@mantenimiento.Descripcion</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@mantenimiento.MantenimientoID" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@mantenimiento.MantenimientoID" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
