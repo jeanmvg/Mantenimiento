@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\PryMantenimiento\\MantenimientoIndustrial\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\views\\equipos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:views\\equipos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\views\\componentes\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:views\\componentes\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\views\\componentes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:views\\componentes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\controllers\\equiposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:controllers\\equiposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\controllers\\componentescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:controllers\\componentescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\views\\equipos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:views\\equipos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|d:\\prymantenimiento\\mantenimientoindustrial\\views\\componentes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C09BD6E7-9A58-4273-BB1E-D1EBDA7C082C}|MantenimientoIndustrial.csproj|solutionrelative:views\\componentes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,54 +38,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
-              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "Views\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Componentes\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\Componentes\\Delete.cshtml",
+              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Componentes\\Delete.cshtml*",
+              "RelativeToolTip": "Views\\Componentes\\Delete.cshtml*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-06T20:03:04.048Z",
+              "WhenOpened": "2025-02-10T13:53:49.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Componentes\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Componentes\\Edit.cshtml",
+              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Componentes\\Edit.cshtml*",
+              "RelativeToolTip": "Views\\Componentes\\Edit.cshtml*",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAcwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-10T13:49:44.347Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Equipos\\Create.cshtml",
-              "RelativeDocumentMoniker": "Views\\Equipos\\Create.cshtml",
-              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Equipos\\Create.cshtml",
-              "RelativeToolTip": "Views\\Equipos\\Create.cshtml",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHIAAAAeAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Componentes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Componentes\\Index.cshtml",
+              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Componentes\\Index.cshtml",
+              "RelativeToolTip": "Views\\Componentes\\Index.cshtml",
+              "ViewState": "AgIAABMAAAAAAAAAAAAiwCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-29T19:57:47.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Equipos\\Edit.cshtml",
-              "RelativeDocumentMoniker": "Views\\Equipos\\Edit.cshtml",
-              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Views\\Equipos\\Edit.cshtml*",
-              "RelativeToolTip": "Views\\Equipos\\Edit.cshtml*",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAYwHUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-27T21:03:21.837Z",
+              "WhenOpened": "2025-02-07T20:00:42.609Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EquiposController.cs",
-              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Controllers\\EquiposController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EquiposController.cs",
-              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Controllers\\EquiposController.cs",
-              "RelativeToolTip": "Controllers\\EquiposController.cs",
-              "ViewState": "AgIAAMwAAAAAAAAAAAAgwCYBAAAJAAAAAAAAAA==",
+              "Title": "ComponentesController.cs",
+              "DocumentMoniker": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Controllers\\ComponentesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ComponentesController.cs",
+              "ToolTip": "D:\\PryMantenimiento\\MantenimientoIndustrial\\Controllers\\ComponentesController.cs",
+              "RelativeToolTip": "Controllers\\ComponentesController.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAiwHUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T17:16:51.898Z",
+              "WhenOpened": "2025-02-07T19:57:57.383Z",
               "EditorCaption": ""
             }
           ]

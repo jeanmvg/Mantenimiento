@@ -1,0 +1,41 @@
+﻿@model MantenimientoIndustrial.Models.Componente
+
+@{
+    ViewData["Title"] = "Eliminar Componente";
+}
+
+<h1>Eliminar Componente</h1>
+
+<h3>¿Está seguro de eliminar este componente?</h3>
+<div>
+    <h4>Componente</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nombre
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            Cantidad
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+        <dt class="col-sm-2">
+            Estado
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <!-- Agrega otros campos según necesites -->
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="ComponenteID" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

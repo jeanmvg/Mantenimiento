@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Mantenimiento Industrial</title>
 
-    <!--Estilo del Proyecto-->
+    <!-- Estilos del Proyecto -->
     <link rel="stylesheet" href="~/css/site.css">
-    <!-- Cloudflare CSS -->
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Bootstrap CSS (una sola versión) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.1/css/buttons.dataTables.min.css">
@@ -35,7 +33,6 @@
                 <h3 class="m-0">de</h3>
                 <h3 class="m-0">Mantenimiento</h3>
             </div>
-
             <!-- Lista de navegación -->
             <ul class="list-unstyled">
                 <!-- Dashboard -->
@@ -44,7 +41,6 @@
                         <i class="bi bi-pie-chart me-2"></i> Dashboard
                     </a>
                 </li>
-
                 <!-- Equipos -->
                 <li class="sidebar-item">
                     <a class="nav-link text-white text-decoration-none d-flex align-items-center py-2 px-3" href="#equiposMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="equiposMenu">
@@ -65,14 +61,12 @@
                         </ul>
                     </div>
                 </li>
-
                 <!-- Mantenimientos -->
                 <li class="sidebar-item">
                     <a href="/Mantenimientos" class="text-white text-decoration-none d-flex align-items-center py-2 px-3">
                         <i class="bi bi-calendar-check me-2"></i> Mantenimientos
                     </a>
                 </li>
-
                 <!-- Alertas -->
                 <li class="sidebar-item">
                     <a href="/Alertas" class="text-white text-decoration-none d-flex align-items-center py-2 px-3">
@@ -82,40 +76,36 @@
             </ul>
         </nav>
 
-
         <!-- Contenido Principal -->
         <div class="container mt-4">
-          @RenderSection("Scripts", required: false)
-          @RenderBody()
+            @RenderBody()
+            @RenderSection("Scripts", required: false)
         </div>
     </div>
-    <!-- Pie de Página -->
-    <footer class="text-center mt-5">
-        <p>&copy; 2025 - Mantenimiento Industrial</p>
-    </footer>
 
+    <!-- Scripts al final del body para asegurar que jQuery esté cargado antes -->
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Bootstrap JS -->
+    <!-- jQuery Validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Bootstrap JS (bundle incluye Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.1/js/buttons.print.min.js"></script>
-
-    <!-- Biblioteca pdfmake.js -->
+    <!-- Biblioteca pdfmake -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
-
     <!-- Archivo JS Personalizado -->
     <script src="/js/datatables-config.js"></script>
+
+    <!-- Pie de Página -->
+    <footer class="text-center mt-5">
+        <p>&copy; 2025 - Mantenimiento Industrial</p>
+    </footer>
 </body>
 </html>
-
-
-

@@ -17,6 +17,8 @@ namespace MantenimientoIndustrial.Models
         public string Ubicacion { get; set; }
         public string Marca { get; set; }
         public string? Modelo { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaIngreso { get; set; }
         public string Estado { get; set; }
         public string FotoRuta { get; set; }

@@ -122,6 +122,7 @@ namespace MantenimientoIndustrial.Controllers
         {
             var equipo = new Equipo
             {
+                FechaIngreso = DateTime.Today,
                 Componentes = new List<Componente>()
             };
 
@@ -140,11 +141,15 @@ namespace MantenimientoIndustrial.Controllers
         // POST: Equipos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Codigo,Nombre,Ubicacion,Marca,Modelo,FechaIngreso,Estado")] Equipo equipo, int[] componentesSeleccionados, int[] cantidades, IFormFile Foto)
+        public async Task<IActionResult> Create(Equipo equipo, int[] componentesSeleccionados, int[] cantidades, IFormFile Foto)
         {
+            // En la creación, eliminamos los errores de ModelState relacionados con Foto y FotoRuta
+            ModelState.Remove("Foto");
+            ModelState.Remove("FotoRuta");
+
             if (ModelState.IsValid)
             {
-                // Guardar la foto
+                // Guardar la foto solo si se proporcionó
                 if (Foto != null && Foto.Length > 0)
                 {
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
@@ -165,11 +170,12 @@ namespace MantenimientoIndustrial.Controllers
                 // Asignar componentes seleccionados
                 for (int i = 0; i < componentesSeleccionados.Length; i++)
                 {
-                    var componente = _context.Componentes.FirstOrDefault(c => c.ComponenteID == componentesSeleccionados[i]);
+                    var componente = await _context.Componentes.FirstOrDefaultAsync(c => c.ComponenteID == componentesSeleccionados[i]);
                     if (componente != null)
                     {
                         componente.EquipoID = equipo.EquipoID;
                         componente.Cantidad = cantidades[i];
+                        _context.Entry(componente).State = EntityState.Modified;
                     }
                 }
 
@@ -177,8 +183,10 @@ namespace MantenimientoIndustrial.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // Recargar la lista de componentes para la vista
             ViewBag.Componentes = _context.Componentes
                 .Where(c => c.EquipoID == null)
+                .OrderBy(c => c.Nombre)
                 .Select(c => new SelectListItem
                 {
                     Value = c.ComponenteID.ToString(),
@@ -196,8 +204,9 @@ namespace MantenimientoIndustrial.Controllers
                 return NotFound();
             }
 
+            // Esperamos el resultado asíncrono para obtener el equipo
             var equipo = await _context.Equipos
-                .Include(e => e.Componentes) // Incluye componentes relacionados
+                .Include(e => e.Componentes) // Si necesitas incluir componentes relacionados
                 .FirstOrDefaultAsync(e => e.EquipoID == id);
 
             if (equipo == null)
@@ -205,94 +214,116 @@ namespace MantenimientoIndustrial.Controllers
                 return NotFound();
             }
 
-            // Cargar lista de componentes disponibles
-            ViewBag.Componentes = _context.Componentes
-                .Where(c => c.EquipoID == null || c.EquipoID == equipo.EquipoID)
-                .OrderBy(c => c.Nombre) // Ordenar alfabéticamente
-                .Select(c => new SelectListItem
-                {
-                    Value = c.ComponenteID.ToString(),
-                    Text = c.Nombre
-                }).ToList();
-
+            // Preparamos la lista de componentes para el select en la vista
+            ViewBag.Componentes = new SelectList(_context.Componentes, "ComponenteID", "Nombre");
             return View(equipo);
         }
 
         // POST: Equipos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipoID,Codigo,Nombre,Ubicacion,Marca,Modelo,FechaIngreso,Estado")] Equipo equipo, int[] componentesSeleccionados, int[] cantidades, IFormFile Foto)
+        public async Task<IActionResult> Edit(int id, Equipo equipo, int[] componentesSeleccionados, int[] cantidades, IFormFile Foto)
         {
             if (id != equipo.EquipoID)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            // En edición, si no se envía nueva foto, eliminamos los errores de ModelState de Foto y FotoRuta
+            ModelState.Remove("Foto");
+            ModelState.Remove("FotoRuta");
+
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    // Manejo de la foto
-                    if (Foto != null && Foto.Length > 0)
+                // Recargar la lista de componentes para la vista en caso de error
+                ViewBag.Componentes = await _context.Componentes
+                    .OrderBy(c => c.Nombre)
+                    .Select(c => new SelectListItem
                     {
-                        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
-                        var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Foto.FileName);
-                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await Foto.CopyToAsync(fileStream);
-                        }
-
-                        equipo.FotoRuta = "/images/" + uniqueFileName;
-                    }
-
-                    _context.Update(equipo);
-
-                    // Actualizar componentes asignados
-                    var componentesActuales = _context.Componentes.Where(c => c.EquipoID == id).ToList();
-                    foreach (var componente in componentesActuales)
-                    {
-                        componente.EquipoID = null; // Eliminar la relación actual
-                    }
-
-                    for (int i = 0; i < componentesSeleccionados.Length; i++)
-                    {
-                        var componente = _context.Componentes.FirstOrDefault(c => c.ComponenteID == componentesSeleccionados[i]);
-                        if (componente != null)
-                        {
-                            componente.EquipoID = equipo.EquipoID;
-                            componente.Cantidad = cantidades[i];
-                        }
-                    }
-
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EquipoExists(equipo.EquipoID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                        Value = c.ComponenteID.ToString(),
+                        Text = c.Nombre
+                    })
+                    .ToListAsync();
+                return View(equipo);
             }
 
-            // Recargar la lista de componentes
-            ViewBag.Componentes = _context.Componentes
-                .OrderBy(c => c.Nombre)
-                .Select(c => new SelectListItem
-                {
-                    Value = c.ComponenteID.ToString(),
-                    Text = c.Nombre
-                }).ToList();
+            // Cargar la entidad existente de la base de datos.
+            var equipoDB = await _context.Equipos.FirstOrDefaultAsync(e => e.EquipoID == id);
+            if (equipoDB == null)
+            {
+                return NotFound();
+            }
 
-            return View(equipo);
+            // Actualizar manualmente las propiedades escalares
+            equipoDB.Codigo = equipo.Codigo;
+            equipoDB.Nombre = equipo.Nombre;
+            equipoDB.Ubicacion = equipo.Ubicacion;
+            equipoDB.Marca = equipo.Marca;
+            equipoDB.Modelo = equipo.Modelo;
+            equipoDB.FechaIngreso = equipo.FechaIngreso;
+            equipoDB.Estado = equipo.Estado;
+
+            // Manejo de la foto: si se envía una nueva, actualizar la ruta; de lo contrario, conservar la existente.
+            if (Foto != null && Foto.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Foto.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Foto.CopyToAsync(fileStream);
+                }
+                equipoDB.FotoRuta = "/images/" + uniqueFileName;
+            }
+
+            // Forzar que la entidad principal se marque como modificada.
+            _context.Entry(equipoDB).State = EntityState.Modified;
+
+            // Actualizar los componentes asignados:
+            // 1. Desasociar los componentes que actualmente tienen este Equipo asignado.
+            var componentesActuales = await _context.Componentes.Where(c => c.EquipoID == id).ToListAsync();
+            foreach (var comp in componentesActuales)
+            {
+                comp.EquipoID = null;
+                _context.Entry(comp).State = EntityState.Modified;
+            }
+
+            // 2. Asignar los nuevos componentes según los arrays recibidos.
+            if (componentesSeleccionados != null && cantidades != null)
+            {
+                int total = Math.Min(componentesSeleccionados.Length, cantidades.Length);
+                for (int i = 0; i < total; i++)
+                {
+                    var comp = await _context.Componentes.FirstOrDefaultAsync(c => c.ComponenteID == componentesSeleccionados[i]);
+                    if (comp != null)
+                    {
+                        comp.EquipoID = equipoDB.EquipoID;
+                        comp.Cantidad = cantidades[i];
+                        _context.Entry(comp).State = EntityState.Modified;
+                    }
+                }
+            }
+
+            try
+            {
+                int affected = await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine($"Filas afectadas: {affected}");
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!EquipoExists(equipoDB.EquipoID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
+
+
 
         // GET: Equipos/Delete/5
         public async Task<IActionResult> Delete(int? id)
